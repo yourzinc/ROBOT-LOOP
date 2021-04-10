@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Web content</title> 
+<meta charset="utf-8">
+<link rel ="stylesheet" href="mystyle.css">
+<script src="myscript.js"> </script>
+</head>
+<body>
+    <h1>Web Content</h1>
+    <div id="layout">
+        <div id="menu">
+            <a onclick="document.getElementById('text').innerHTML = p1">Web</a>
+            <a onclick="document.getElementById('text').innerHTML = p2">HTML</a>
+            <a onclick="document.getElementById('text').innerHTML = p3">CSS</a>
+            <a onclick="document.getElementById('text').innerHTML = p4">JavaScript</a>
+            <a onclick="document.getElementById('text').innerHTML = p1+p2+p3+p4">ALL</a>
+        </div>
+        <div id ="text">
+            <script> document.write(p1);</script>
+        </div>
+    </div>
+</body>
+</html>

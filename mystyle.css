@@ -1,52 +1,47 @@
+html { height: 100%;}
 body {
     background-image: url(img_ewha.jpg);
     background-size: cover;
 }
 
+h1, #menu, #text {
+    margin : 5px;
+}
+
 h1 {
-    border: 5px solid white;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    text-align: center;
     color: white;
-    text-shadow: 5px 5px 4px black;
+    border: 3px solid white;
+    text-shadow: 0px 0px 20px black;
 }
 
-div.text {
-    margin: 10px;
-    align-self: center;
+#text {
     background-color: rgba(0, 0, 0, 0.5);
-    border: 1px solid black;
     color: white;
-    font-size: 120%;
-    padding : 10px;
+    padding: 0px 10px;
 }
 
-a{
+h1 {
+    padding: 10px;
+    text-align: center;
+}
+
+a {
     font-weight: bold;
     background-color: #555;
     color: white;
     padding: 10px; margin: 0px;
     text-align: center;
     text-decoration: none;
+    display: block;
 }
 
-a:hover { background-color: gray;}
-
-#menu {
-    margin: 10px;
-    display: grid;
-    grid-template-columns: auto auto auto auto;
+a:hover {
+    background-color: gray;
 }
 
-.read{
-    color:gray;
-}
-
-#now {color: orange;}
+#menu {display: grid; grid-template-columns: auto auto auto auto auto;}
 
 @media(min-width:600px) {
-    #layout {display: grid; grid-template-columns: auto auto; }
-    #menu {display: block;}
-    a {display: block;}
+    #layout {display:grid; grid-template-columns: auto auto;}
+    #menu {display:block;}
 }

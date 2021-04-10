@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <script>
+        var count = 0;
+
+        function add() {
+            count ++;
+            document.getElementById("text").innerHTML = count;
+        }
+
+        function abs() {
+            count --;
+            document.getElementById("text").innerHTML = count;
+        }
+    </script>
+
+    <h2>Inc / Dec</h2>
+
+    <p id="text">0</p>
+    <button onclick="add()">+</button>
+    <button onclick="abs()">-</button>
+</body>
+</html>
