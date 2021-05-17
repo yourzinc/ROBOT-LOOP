@@ -1,0 +1,32 @@
+<!--Lab 1b. 간단한 시계 + if 절, am/pm , 배경색-->
+<!DOCTYPE html>
+<html>
+   
+<body>
+    <span style="background-color: antiquewhite; padding: 5px;">
+    <span id="hh"></span>:<span id="mm"></span>:<span id="ss"></span>
+    <span id="ap"></span>
+    </span>
+
+    <script>
+        setInterval(run_everysec,1000);
+
+        function run_everysec()
+        {
+            var d = new Date();
+            var H = d.getHours();
+            document.getElementById("hh").innerHTML = H;
+            document.getElementById("mm").innerHTML = d.getMinutes();
+            document.getElementById("ss").innerHTML = d.getSeconds();
+            if( H < 12 )
+                document.getElementById("ap").innerHTML = "am";
+            else 
+            {
+                H -=12;
+                document.getElementById("ap").innerHTML = "pm";
+                document.getElementById("hh").innerHTML = H;
+            }
+        }
+    </script>
+</body>
+</html>
