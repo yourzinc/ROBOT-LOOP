@@ -1,0 +1,95 @@
+<!--
+    입력받은 이름으로 전화번호부에서 (이름, 번호) 지우기
+    local 에 (이름, 번호) 데이터 저장 , 로딩 기능 추가
+-->
+<!DOCTYPE html>
+<html>
+<body>
+<h2> Phone Book </h2>
+
+<button onclick="save_pbook()">Save</button>
+<button onclick="load_pbook()">Load</button> <br> <br>
+
+<input id="name"><input id="phone">
+    <button onclick="add_row()">Add</button> <br> <br>
+    
+<table id="tb1">
+    <tr> <th>Name</th> <th>Phone</th> </tr>
+</table>
+
+<br>
+<button onclick="del_row()">Del</button>
+<script>
+// Model
+var pbook = [ ];
+
+// Control function
+function add_row() {
+    var n = document.getElementById("name").value;
+    var p = document.getElementById("phone").value;
+    var a = { name:n , phone:p };
+    pbook.push(a)
+    display_pbook();
+}
+
+function del_row() {
+    var n = document.getElementById("name").value;
+    for ( var i = 0; i < pbook.length; i++ ){
+        if (pbook[i].name == n) {
+            pbook.splice(i,1);
+            break;
+        }
+    }
+    display_pbook();
+}
+
+// View function
+function display_pbook() {
+
+    document.getElementById("tb1").innerHTML = "<tr> <th>Name</th> <th>Phone</th> </tr>";
+
+    for ( i=0; i<pbook.length; i++ ) {
+        var nn = pbook[i].name
+        var pp = pbook[i].phone
+        document.getElementById("tb1").innerHTML += "<tr> <td>"+ nn +"</td> <td>"+ pp + "</td> </tr>";
+    }
+}
+
+// Save function
+function save_pbook() {
+    localStorage.setItem("phonebook",JSON.stringify(pbook));
+}
+
+// Load function
+function load_pbook() {
+    var t = localStorage.getItem("phonebook");
+    pbook = JSON.parse(t);
+    display_pbook();
+}
+</script>
+
+<!--CSS-->
+<style>
+    table {
+        font-family: sans-serif;
+        border-collapse:collapse;
+    }
+    td, th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        width: 100px;
+        text-align: center;
+    }
+    
+    th {
+        background-color: green;
+        color:white;
+    }
+    
+    input {
+        width: 100px;
+    }
+</style>
+
+</body>
+</html>
