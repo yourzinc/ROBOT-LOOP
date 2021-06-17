@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<body>
+<div>
+    <div class = "left">
+        <div class = "background" id = "lleft" onclick="select_l()"></div>
+        <button class = "button" id = "button1" onclick="drum_left()">
+            LOOP-START
+        </button>
+    </div>
+    <div class = "right">
+        <div class = "background" id = "rright" onclick="select_r()"> </div>
+        <button class = "button" id = "button2" onclick="robot_right()">
+            LOOP-START
+        </button>
+    </div>
+</div>
+
+</body>
+<style>
+
+*{
+    margin:0;
+    padding: 0;
+
+}
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+div{
+    width: 100%;
+    height: 100%;
+    }
+    
+    .left
+    {
+        width: 50%;
+        height: 100%;
+        float: left;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .right
+    {
+        width: 50%;
+        height: 100%;
+        float: right;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .background{
+        width: 100%;
+        height: 50%;
+    }
+    #lleft{
+        color: white;
+        text-align: center;
+        padding: 20% 20%;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        background: black;
+    }
+    #rright{
+        color: white;
+        text-align: center;
+        padding: 20% 20%;
+        border: none;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        background: black;
+    }
+    .button{
+        width: 100%;
+        height: 50px;
+        background: white;
+    }
+
+body{
+    background-color: black; 
+    }
+</style>
+
+<script>
+    
+    document.getElementById('lleft').innerHTML = "DRUM";
+    document.getElementById('rright').innerHTML = "ROBOT";
+    // Sound & Audio Manegement
+    S = [
+    { key : "81" , sound : new Audio('clap2.wav') }, //Q
+    { key : "87" , sound : new Audio('closedhat1.wav') }, //W
+    { key : "69" , sound : new Audio('closedhat2.wav') }, //E
+    { key : "82" , sound : new Audio('kicksnap.wav') }, //R
+    { key : "84" , sound : new Audio('openhat1.wav') }, //T
+    { key : "89" , sound : new Audio('openhat2.wav') }, //Y
+    { key : "85" , sound : new Audio('snappykick.wav') }, //U
+    { key : "73" , sound : new Audio('snaredrum1.wav') }, //I
+    { key : "79" , sound : new Audio('snaredrum2.wav') }, //O
+    { key : "80" , sound : new Audio('solidkick.wav') }  //P
+    ];
+
+    S_audio = [
+        'clap2.wav',
+        'closedhat1.wav',
+        'closedhat2.wav',
+        'kicksnap.wav',
+        'openhat1.wav',
+        'openhat2.wav',
+        'snappykick.wav',
+        'snaredrum1.wav',
+        'snaredrum2.wav',
+        'solidkick.wav'
+    ]
+
+    R = [
+    { key : "81" , sound : new Audio('r_level_a.wav') }, //Q
+    { key : "87" , sound : new Audio('r_try_again.wav') }, //W
+    { key : "69" , sound : new Audio('r_the_correct.wav') }, //E
+    { key : "82" , sound : new Audio('r_sayit.wav') }, //R
+    { key : "84" , sound : new Audio('r_rightnow.wav') }, //T
+    { key : "89" , sound : new Audio('r_check.wav') }, //Y
+    { key : "85" , sound : new Audio('r_all.wav') }, //U
+    { key : "73" , sound : new Audio('r_hello.wav') }, //I
+    { key : "79" , sound : new Audio('r_goodbye.wav') }, //O
+    { key : "80" , sound : new Audio('r_how_many.wav') }  //P
+    ];
+
+    R_audio = [
+        'r_level_a.wav',
+        'r_try_again.wav',
+        'r_the_correct.wav',
+        'r_sayit.wav',
+        'r_rightnow.wav',
+        'r_check.wav',
+        'r_all.wav',
+        'r_hello.wav',
+        'r_goodbye.wav',
+        'r_how_many.wav'
+    ]
+
+
+    // Color Resource
+    _background_color = ["#413C69", "#4A47A3", "#709FB0", "#00587A", "#03506F", "#424874", "#511281", "#484C7F","#21094E", "#5C6E91"];
+
+    _background_color_2 = ["#8C0000", "#BD2000", "#FA1E0E", "#FFBE0F", "#6A492B", "#F9B208", "#F98404", "#CC561E","#F45905", "#FA9905"];
+
+    _data_l = new Array();
+    _data_sound_l = new Audio();
+    _data_background_l = new Array();
+
+    _data_r = new Array();
+    _data_sound_r = new Audio();
+    _data_background_r = new Array();
+
+
+    area = "";
+
+    select_left = false;
+    select_right = false;
+
+    l_loop_start = false;
+    r_loop_start = false;
+
+
+    // Select Left Part
+    function select_l()
+    {
+        select_left = true;
+        select_right = false;
+        area = "lleft";
+        document.getElementById('lleft').style.border = "thick groove #f44336";
+        document.getElementById('rright').style.border = "none";
+    }
+
+    // Select Right Part
+    function select_r()
+    {
+        select_right = true;
+        select_left = false;
+
+        area = "rright";
+        document.getElementById('rright').style.border = "thick groove #f44336";
+        document.getElementById('lleft').style.border = "none";
+    }
+
+    // DRUM left
+    function drum_left()
+    {
+        var audio = new Audio;
+        var playlist = new Array;
+
+        if (l_loop_start == false)
+        {
+            l_loop_start = true;
+            document.getElementById('button1').innerHTML = "LOOP-STOP"
+        }
+        else
+        {
+            document.getElementById('button1').innerHTML = "LOOP-PLAY"
+
+            if ( _data_l != 0) {
+                // make playlist
+                for ( i=0 ; i<4; i++ ) {
+                    d = _data_l.shift()
+                    _data_background_l.push(_background_color[d]);
+                    playlist.push(S_audio[d]);
+                }
+                
+                i = 0;
+                // play the playlist
+                audio.addEventListener('ended', function () {
+                    i = ++i < playlist.length ? i : 0;
+                    audio.src = playlist[i];
+                    document.getElementById("lleft").style.backgroundColor = _data_background_l[i];
+                    audio.play();
+                }, true);
+
+                audio.loop = false;
+                audio.src = playlist[0];
+                audio.play();
+            }
+        }
+    }
+    
+    // ROBOT right
+    function robot_right()
+    {
+        var audio2 = new Audio;
+        var playlist2 = new Array;
+
+        if (r_loop_start == false)
+        {
+            r_loop_start = true;
+            document.getElementById('button2').innerHTML = "LOOP-STOP"
+        }
+        else
+        {
+            document.getElementById('button2').innerHTML = "LOOP-PLAY"
+
+            if ( _data_r != 0) {
+                // make playlist
+                for ( i=0 ; i<4; i++ ) {
+                    d2 = _data_r.shift()
+                    _data_background_r.push(_background_color_2[d2]);
+                    playlist2.push(R_audio[d2]);
+                }
+                
+                i = 0;
+                // play the playlist
+                audio2.addEventListener('ended', function () {
+                    i = ++i < playlist2.length ? i : 0;
+                    audio2.src = playlist2[i];
+                    document.getElementById("rright").style.backgroundColor = _data_background_r[i];
+                    audio2.play();
+                }, true);
+
+                audio2.loop = false;
+                audio2.src = playlist2[0];
+                audio2.play();
+            }
+        }
+    }
+
+    // push then play
+    document.addEventListener('keydown', function(event) {
+        console.log(event.keyCode);
+        
+        if ( select_left && l_loop_start == true && _data_l.length < 4) 
+            _data_l.push(S.findIndex(i=>i.key == event.keyCode));
+        
+        if ( select_right && r_loop_start == true && _data_r.length < 4) 
+            _data_r.push(R.findIndex(i=>i.key == event.keyCode));
+
+            if(event.keyCode  == 81) {
+                i = 0;
+                if (select_left){
+                    S[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color[i];
+                }
+                if (select_right) {
+                    R[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color_2[i];
+                }
+            }
+            if(event.keyCode == 87) {
+                i = 1;
+                if (select_left){
+                    S[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color[i];
+                }
+                if (select_right) {
+                    R[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color_2[i];
+                }
+            }
+            if(event.keyCode == 69) {
+                i = 2;
+                if (select_left){
+                    S[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color[i];
+                }
+                if (select_right) {
+                    R[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color_2[i];
+                }
+            }
+            if(event.keyCode == 82) {
+                i = 3;
+                if (select_left){
+                    S[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color[i];
+                }
+                if (select_right) {
+                    R[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color_2[i];
+                }
+            }
+            if(event.keyCode == 84) {
+                i = 4;
+                if (select_left){
+                    S[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color[i];
+                }
+                if (select_right) {
+                    R[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color_2[i];
+                }
+            }
+            if(event.keyCode == 89) {
+                i = 5;
+                if (select_left){
+                    S[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color[i];
+                }
+                if (select_right) {
+                    R[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color_2[i];
+                }
+            }
+            if(event.keyCode == 85) {
+                i = 6;
+                if (select_left){
+                    S[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color[i];
+                }
+                if (select_right) {
+                    R[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color_2[i];
+                }
+            }
+            if(event.keyCode == 73) {
+                i = 7;
+                if (select_left){
+                    S[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color[i];
+                }
+                if (select_right) {
+                    R[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color_2[i];
+                }
+            }
+            if(event.keyCode == 79) {
+                i = 8;
+                if (select_left){
+                    S[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color[i];
+                }
+                if (select_right) {
+                    R[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color_2[i];
+                }
+            }
+            if(event.keyCode == 80) {
+                i = 9;
+                if (select_left){
+                    S[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color[i];
+                }
+                if (select_right) {
+                    R[i].sound.play();
+                    document.getElementById(area).style.backgroundColor =  _background_color_2[i];
+                }
+            }
+    })
+
+</script>
+</html>
+    
