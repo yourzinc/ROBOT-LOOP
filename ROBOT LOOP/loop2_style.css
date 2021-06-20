@@ -1,0 +1,75 @@
+*{
+    margin:0;
+    padding: 0;
+
+}
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+.main{
+    
+    width: 100%;
+    height: 100%;
+}
+
+    .left
+    {
+        width: 50%;
+        height: 100%;
+        float: left;
+    }
+
+    .right
+    {
+        width: 50%;
+        height: 100%;
+        float: right;
+    }
+
+    .box
+    {
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+        height: 50%;
+        border: 2.5pt solid black;
+
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .subboxs
+    {
+        height: 90%;
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+    .subbox
+    {
+        display: inline-block;
+        width: 60px;
+        height: 60px;
+        margin: 20px;
+        border: 5pt solid  #ffffff;
+    }
+    .controller
+    {
+        display: flex;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        
+    }
+    .record, .play_stop, .delete
+    {
+        color: white;
+        display: inline-block;
+        width: 100px;
+        margin:  0px 20px;
+        border: 3pt solid  gray;
+        background-color: gray;
+    }
