@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" type="text/css" href="style.css">
+<body>
+<div class = "main">
+    <div class = "left">
+        <div class = "box" id="left_up" value=0 onclick="select(0)">
+            <div class = "subboxs">
+                <div class = "subbox" id = "box1"></div>
+                <div class = "subbox" id = "box2"></div>
+                <div class = "subbox" id = "box3"></div>
+                <div class = "subbox" id = "box4"></div>
+            </div>
+            <div class = "controller">
+                <div class = "record" id ="record1" onclick="record(1)">REC ON</div>
+                <div class = "play_stop" id = "play1" onclick="press_play_1()">PLAY</div>
+                <div class = "delete" id = "delete1" onclick="press_delete_1()">DEL</div>
+            </div>
+        </div>
+
+        <div class = "box" id="left_down" value=1 onclick="select(1)">
+            <div class = "subboxs">
+                <div class = "subbox" id = "box11"></div>
+                <div class = "subbox" id = "box22"></div>
+                <div class = "subbox" id = "box33"></div>
+                <div class = "subbox" id = "box44"></div>
+            </div>
+            <div class = "controller">
+                <div class = "record" id ="record2" onclick="record(2)" >REC ON</div>
+                <div class = "play_stop" id = "play2" onclick="press_play_2()">PLAY</div>
+                <div class = "delete" id = "delete2" onclick="press_delete_2()">DEL</div>
+            </div>
+        </div>
+    </div>
+    <div class = "right">
+        <div class = "box" id="right_up" value=2  onclick="select(2)">
+            <div class = "subboxs">
+                <div class = "subbox" id = "box111"></div>
+                <div class = "subbox" id = "box222"></div>
+                <div class = "subbox" id = "box333"></div>
+                <div class = "subbox" id = "box444"></div>
+            </div>
+            <div class = "controller" >
+                <div class = "record" id ="record3" onclick="record(3)" >REC ON</div>
+                <div class = "play_stop" id = "play3"  onclick="press_play_3()" >PLAY</div>
+                <div class = "delete" id = "delete3" onclick="press_delete_3()">DEL</div>
+            </div>
+        </div> 
+        <div class = "box" id="right_down" value=3 onclick="select(3)">
+            <div class = "subboxs">
+                <div class = "subbox" id = "box1111"></div>
+                <div class = "subbox" id = "box2222"></div>
+                <div class = "subbox" id = "box3333"></div>
+                <div class = "subbox" id = "box4444"></div>
+            </div>
+            <div class = "controller">
+                <div class = "record" id ="record4" onclick="record(4)">REC ON</div>
+                <div class = "play_stop" id = "play4" onclick="press_play_4()">PLAY</div>
+                <div class = "delete" id = "delete4" onclick="press_delete_4()">DEL</div>
+            </div>
+        </div> 
+    </div>
+</div>
+
+</body>
+<script src = "sound.js"></script>
+<script src = "color.js"></script>
+<script src = "selectbox.js"></script>
+<script src = "keypress.js"></script>
+</html>
+
